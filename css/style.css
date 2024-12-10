@@ -1,0 +1,49 @@
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;  
+    margin: 0;      
+    background-color: #f8f9fa; 
+}
+
+.custom-container {
+    max-width: 400px;
+    width: 100%; 
+    padding: 40px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff; 
+    border-radius: 12px; 
+}
+
+.form-control {
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+}
+
+.form-control::placeholder {
+    font-size: 0.8rem;
+    color: #adb5bd;
+}
+
+ .form-floating > label {    
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.text-orange {
+    color: #fac055; 
+    font-weight: bold;
+}
+
+.btn-warning{
+    background-color: #fac055; 
+    color: #111111; 
+    font-size: 0.9rem;
+}
+
+.btn-warning:hover{
+    background-color: #f39f03; 
+}
