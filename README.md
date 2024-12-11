@@ -1,4 +1,4 @@
-# UserHUB - Frontend
+# UserHUB - Frontend (MVP Pós Graduação - PUC RIO)
 
 ![USERHUB_FRONT-END](img/DASHBOARD.png)
 
