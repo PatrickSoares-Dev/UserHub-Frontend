@@ -1,20 +1,88 @@
 
+#alertMessage {
+    font-size: 0.875rem; 
+    padding: 0.75rem 1rem; 
+    margin-bottom: 1rem;
+}
+
+.nav-link {
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #d97a08;
+}
+
+.navbar-brand, .nav-link.text-orange {
+    color: #e08e0b;
+}
+
+.btn-orange, .bg-orange {
+    background-color: #fab341;
+    color: #111111;
+    border: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-orange:hover {
+    background-color: #d97a08;
+}
+
+.btn-outline-orange {
+    color: #e08e0b;
+    border-color: #e08e0b;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-orange:hover {
+    background-color: #e08e0b;
+    color: #111111;
+}
+
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;  
-    margin: 0;      
-    background-color: #f8f9fa; 
+    margin: 0;
+    background-color: #f8f9fa;
+    padding-top: 60px; /* Ajustar conforme a altura real do header */
+    overflow-x: hidden; /* Previne o scroll horizontal */
+}
+
+#navBar {
+    background-color: #fff;
+    border-bottom: 2px solid #e08e0b;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1030; /* Certifique-se de que o z-index é suficientemente alto */
+}
+
+.custom-container-dash {
+    width: 100%;
+    padding: 0.7rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 12px;
+    margin-top:3rem; /* Ajuste este valor para garantir que haja espaço suficiente abaixo do header */
 }
 
 .custom-container {
+    width: 100%;
     max-width: 400px;
-    width: 100%; 
-    padding: 40px; 
+    padding: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff; 
-    border-radius: 12px; 
+    background-color: #fff;
+    border-radius: 12px;
+}
+
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
 }
 
 .form-control {
@@ -28,22 +96,204 @@ body {
     color: #adb5bd;
 }
 
- .form-floating > label {    
+.form-floating > label {
     font-size: 0.9rem;
     color: #6c757d;
 }
 
 .text-orange {
-    color: #fac055; 
+    color: #e08e0b;
     font-weight: bold;
 }
 
-.btn-warning{
-    background-color: #fac055; 
-    color: #111111; 
-    font-size: 0.9rem;
+.nav-link.active {
+    background-color: #e08e0b;   
+    color: #ffffff;              
+    border-color: #e08e0b;       
 }
 
-.btn-warning:hover{
-    background-color: #f39f03; 
+.nav-link {
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #d97a08;
+}
+
+.card-body {
+    padding: 16px; 
+    border-radius: 8px; 
+    background-color: #ffffff; 
+    box-shadow: 0 1px 3px rgba(216, 216, 216, 0.1); 
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.table .table {
+    background-color: #fff;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem; 
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 2rem; 
+    border-radius: 0.5rem;
+}
+
+#usuariosTable{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dt-length {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.dt-length label {
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.dt-input {
+    margin-left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    background-color: #f8f9fa;
+    transition: border-color 0.3s ease;
+}
+
+.dt-input:focus {
+    border-color: #e08e0b;
+    outline: none;
+}
+
+.dt-search {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 15px; 
+}
+
+.dataTables_wrapper .dataTables_paginate,
+.dataTables_wrapper .dataTables_info {
+    margin-top: 10px; 
+}
+
+.dt-layout-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.5rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dt-paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Espaço entre os botões */
+}
+
+.dt-paging-button {
+    padding: 0.6rem 1rem;
+    margin: 0.2rem;
+    font-size: 0.8rem;
+    color: #555;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dt-paging-button:disabled,
+.dt-paging-button.disabled {
+    color: #535353;
+    background-color: #f0f0f0;
+    border-color: #ddd;
+    cursor: not-allowed;
+}
+
+.dt-paging-button:not(.disabled):hover {
+    color: #fff;
+    background-color: #e08e0b;
+    border-color: #e08e0b;
+}
+
+.dt-paging-button.current {
+    color: #fff;
+    background-color: #fab341;
+    border-color: #fab341;
+}
+
+.dt-paging-button[aria-disabled="false"]:hover {
+    background-color: #d97a08;
+}
+
+.dt-paging-button[aria-current="page"] {
+    font-weight: bold;
+    cursor: default;
+    background-color: #fab341;
+    color: #fff;
 }

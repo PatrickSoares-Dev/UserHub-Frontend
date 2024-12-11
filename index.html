@@ -4,13 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>    
+    <title>UserHUB</title>    
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMt23cez/3paNdF+ZlFIMZlKySRI8e7ShgbV4vF" crossorigin="anonymous">
+    <link href="vendor/datatables/js/datatables.min.css" rel="stylesheet">
+    <link href="vendor/datatables/js/datatables.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css"> 
 </head>
 
 <body class="d-flex align-items-center py-4 bg-light">
-    <div class="container custom-container">
+
+    <!-- Login -->
+    <div id="loginContainer" class="container custom-container">
         <div class="text-center">
             <div class="alert alert-danger" id="alertError" role="alert" style="display: none;"></div>
             <img class="mb-2" src="/img/hub.png" alt="Logotipo da empresa" width="72" height="57">
@@ -39,7 +44,209 @@
         </div>
     </div>
 
+    <!-- Dashboard USUARIO -->
+    <div id="dashboardContainerUser" class="container" style="display: none;">
+
+        <header class="navbar navbar-expand-md fixed-top" id="navBar">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand d-inline-flex text-decoration-none text-orange">
+                    <img class="mb-2" src="/img/hub.png" alt="Logotipo da empresa" width="36" height="29">
+                </a>
+                <div class="col-md-3 text-end">                    
+                    <button type="button" class="btn btn-orange2">Deslogar</button>
+                </div>
+            </div>
+
+            
+        </header>
+
+        <div class="p-5 text-center bg-body-tertiary rounded-3">
+            <svg class="bi mt-4 mb-3" style="color: var(--bs-indigo);" width="100" height="100"><use xlink:href="#bootstrap"/></svg>
+            <h1 class="text-body-emphasis">Olá, Usuário Comum</h1>
+            <p class="col-lg-8 mx-auto fs-5 text-muted">
+                Esta é uma visualização de teste. Como usuário comum, você não possui permissões para acessar funcionalidades administrativas.
+            </p>
+            <div class="d-inline-flex gap-2 mb-5">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Dashboard  ADMIN-->
+    <div id="dashboardContainer" class="container" style="display: none;">
+        <header class="navbar navbar-expand-md fixed-top" id="navBar">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand d-inline-flex text-decoration-none text-orange">
+                    <img class="mb-2" src="/img/hub.png" alt="Logotipo da empresa" width="36" height="29">
+                </a>
+                <div class="col-md-3 text-end">                    
+                    <button type="button" class="btn btn-orange">Deslogar</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="container custom-container-dash">
+            <div class="row p-4">                                          
+
+                <div class="col-8">
+                    <h5>Usuários cadastrados <span id="userCountBadge" class="badge bg-orange">0</span></h5>
+                </div>
+
+                <div class="col-4 text-end">                                               
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#departamentoModal">Gerenciar Departamentos</button>
+                    <button type="button" class="btn btn-orange" data-bs-toggle="modal" data-bs-target="#cadastrarModal" data-bs-whatever="usuario">Novo usuário</button>
+                </div>
+
+                <div class="col-12 mt-4">
+
+                    <div class="card">
+                        <div class="card-body">
+                                                                    
+                            <div class="card-datatable table-responsive"> 
+                                <table id="usuariosTable"  class="table order-column" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>Email</th>
+                                            <th>Departamento</th>
+                                            <th>Tipo de Usuário</th>
+                                            <th>Ações</th> 
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                                    
+                        </div>                            
+                    </div>      
+
+                </div>    
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Cadastrar Modal -->
+    <div class="modal fade" id="cadastrarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cadastrarModalLabel">Cadastrar usuário</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alertMessage" class="alert" role="alert" style="display: none;"></div>
+    
+                    <form id="cadastroForm">
+                        <div id="usuarioFields">
+                            <div class="mb-3">
+                                <label for="nome" class="col-form-label">Nome Completo:</label>
+                                <input type="text" class="form-control" id="nome" placeholder="Nome completo do usuário">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email do usuário">
+                            </div>
+                            <div class="mb-3">
+                                <label for="senha" class="col-form-label">Senha:</label>
+                                <input type="password" class="form-control" id="senha" placeholder="Coloque a senha">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tipo_departamento" class="col-form-label">Departamento:</label>
+                                <select class="form-select" id="tipo_departamento">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tipo_usuario" class="col-form-label">Tipo de Usuário:</label>
+                                <select class="form-select" id="tipo_usuario">
+                                    <option value="admin">Admin</option>
+                                    <option value="usuario">Usuario</option>
+                                </select>
+                            </div>                            
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-orange" id="cadastrarBtn">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Editar -->
+    <div class="modal fade" id="editarRemoverModal" tabindex="-1" aria-labelledby="editarRemoverModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarRemoverModalLabel">Editar Usuário</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alertMessageEdit" class="alert" role="alert" style="display: none;"></div>
+                    <form id="editarForm">
+                        <div id="editUsuarioFields">
+                            <div class="mb-3">
+                                <label for="editNome" class="col-form-label">Nome Completo:</label>
+                                <input type="text" class="form-control" id="editNome" placeholder="Nome completo do usuário">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editEmail" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="editEmail" placeholder="Email do usuário">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSenha" class="col-form-label">Senha:</label>
+                                <input type="password" class="form-control" id="editSenha" placeholder="Coloque a nova senha">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tipo_departamento" class="col-form-label">Departamento:</label>
+                                <select class="form-select" id="tipo_departamentoEditar">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editTipoUsuario" class="col-form-label">Tipo de Usuário:</label>
+                                <select class="form-select" id="editTipoUsuario">
+                                    <option value="admin">Admin</option>
+                                    <option value="user">Usuário</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="removerBtn">Remover</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-warning" id="editarBtn">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Gerenciar Departamentos -->
+    <div class="modal fade" id="departamentoModal" tabindex="-1" aria-labelledby="departamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="departamentoModalLabel">Gerenciar Departamentos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="departamentoAlert" class="alert" role="alert" style="display: none;"></div>
+                    <ul id="listaDepartamentos" class="list-group mb-3">
+                    </ul>
+                    <div class="input-group mb-3">
+                        <input type="text" id="novoDepartamento" class="form-control" placeholder="Nome do novo departamento">
+                        <button class="btn btn-outline-secondary" type="button" id="adicionarDepartamentoBtn">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="vendor/jquery/js/jquery-3.7.1.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/datatables/js/datatables.js"></script>    
     <script src="js/script.js"></script>
 </body>
 </html>
